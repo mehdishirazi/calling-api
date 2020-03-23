@@ -1,0 +1,39 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="calling-api.css">
+    </head>
+    <body class="grid-container">
+      <div id="app">
+        <span>Verbs:</span>
+      <select id="verbs" class="item">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PATCH">PATCH</option>
+        <option value="LIST">LIST</option>
+        <option id="custom">Custom verb</option>
+      </select>
+      </div>
+      <div> 
+        <span>URL:</span>
+        <input id="item1" class="secondDiv"></input>
+        <button onclick="Send()">Send</button>
+      </div>
+      <div></div>
+      <div id="key" class="item">
+        <span id="head">Header</span><br>
+      </div>
+      <div id="value">
+        <button id="btn" onclick="NewHeader()">Add new headers</button><br>
+      </div>
+      <div></div>
+      <div id="bodyDiv">
+        <span id="body">Body</span>
+      </div>
+      <div id="btnDiv">
+        <button id="body_btn" onclick="NewBody()">Add new body</button>
+      </div>
+      <div></div>
+      <script src='calling-api.js'></script>
+    </body>
+</html>
+

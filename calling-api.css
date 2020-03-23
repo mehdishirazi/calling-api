@@ -1,0 +1,23 @@
+.verb {
+  width: 100px;
+}
+
+.item {
+  width: 100px;
+  margin: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px 10px;
+  grid-template-columns: 180px 800px auto;
+  grid-template-rows: auto 200px auto;
+  grid-row-gap: 50px;
+  padding: 10px;
+}
+
+.secondDiv {
+  width: 550px;
+}
+
+
