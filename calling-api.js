@@ -15,22 +15,21 @@ function CreateElement(elementName, append=null, id=null){
 
 
 function AddHeader(){
-    let text_key = document.createTextNode('Key');
-    let text_value = document.createTextNode('Value');
-    let header = document.getElementById('headerKey');
-    let head = document.getElementById('header');
-    let value = document.getElementById('headerValue');
-    let value_br = document.createElement('br');
-    let input_br = document.createElement('br');
+    let textKey = document.createTextNode('Key');
+    let textValue = document.createTextNode('Value');
+    let headerKey = document.getElementById('headerKey');
+    let headerValue = document.getElementById('headerValue');
     
-    CreateElement("span", header);
-    element.appendChild(text_key);
-    CreateElement("input", header, id="inputKey"+countOfHeader);
+    createElement = CreateElement;
+    
+    createElement("span", headerKey);
+    element.appendChild(textKey);
+    createElement("input", headerKey, id="inputKey"+countOfHeader);
 
-    CreateElement("span", value);
-    element.appendChild(text_value);
-    element.after(value_br);
-    CreateElement("input", value, id="inputValue"+countOfHeader);
-    element.after(input_br);
+    createElement("span", headerValue);
+    element.appendChild(textValue);
+    element.after(document.createElement('br'));
+    createElement("input", headerValue, id="inputValue"+countOfHeader);
+    element.after(document.createElement('br'));
 }
 
