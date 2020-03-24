@@ -11,7 +11,7 @@ function CreateElement(elementName, append=null, id=null, innerText=null){
         element.id = id;
     }
     if (innerText !== null){
-        element.innerText = textName;
+        element.innerText = innerText;
     }
     return element;
 }
@@ -26,7 +26,7 @@ function AddHeader(){
 
     CreateElement("span", headerValue, id=null, textName = "Value");
     CreateElement("br", headerValue);
-    inputTag = CreateElement("input", headerValue, id="inputValue"+countOfHeader);
+    CreateElement("input", headerValue, id="inputValue"+countOfHeader);
     CreateElement("br", headerValue);
 }
 
