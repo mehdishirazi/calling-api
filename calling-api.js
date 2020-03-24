@@ -2,7 +2,7 @@ let countOfHeader = 0;
 let countOfBody = 0;
 
 
-function CreateElement(elementName, append=null, id=null, textName=null){
+function CreateElement(elementName, append=null, id=null, innerText=null){
     element = document.createElement(elementName);
     if (append !== null){
         append.appendChild(element);
@@ -10,7 +10,7 @@ function CreateElement(elementName, append=null, id=null, textName=null){
     if (id !== null){
         element.id = id;
     }
-    if (elementName == "span" && textName !== null){
+    if (elementName == "span" && innerText !== null){
         element.innerText = textName;
     }
     return element;
