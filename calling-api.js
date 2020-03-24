@@ -28,5 +28,7 @@ function AddHeader(){
     CreateElement("br", headerValue);
     CreateElement("input", headerValue, id="inputValue"+countOfHeader);
     CreateElement("br", headerValue);
+
+    countOfHeader++;
 }
 
