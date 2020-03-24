@@ -21,10 +21,10 @@ function AddHeader(){
     let headerKey = document.getElementById('headerKey');
     let headerValue = document.getElementById('headerValue');
     
-    CreateElement("span", headerKey, id=null, textName = "Key");
+    CreateElement("span", headerKey, id=null, innerText = "Key");
     CreateElement("input", headerKey, id="inputKey"+countOfHeader);
 
-    CreateElement("span", headerValue, id=null, textName = "Value");
+    CreateElement("span", headerValue, id=null, innerText = "Value");
     CreateElement("br", headerValue);
     CreateElement("input", headerValue, id="inputValue"+countOfHeader);
     CreateElement("br", headerValue);
