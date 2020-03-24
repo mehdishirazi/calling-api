@@ -1,103 +1,36 @@
-let verbCustomize = document.getElementById('verbs');
-let headerTags = [];
-verbCustomize.onclick = Custom_verb;
-let i = 1;
+let countOfHeader = 0;
+let countOfBody = 0;
 
 
-function Custom_verb(e){
-    if (e.currentTarget.selectedIndex == "4"){
-        let mainDiv = document.getElementById('app');
-        let customVerb = document.getElementById('verbs');
-        mainDiv.removeChild(customVerb);
-        customVerb = document.createElement('INPUT');
-        mainDiv.appendChild(customVerb);
-        customVerb.className = "verb";
+function CreateElement(elementName, append, id=null){
+    element = document.createElement(elementName);
+    if (id !== null){
+        element.id = id;
     }
+    append.appendChild(element);
+    return element;
 }
 
-
-function Send(){
-    let verb = document.getElementById('verbs').value;
-    let url = document.getElementById('item1').value;
-  
-}
-
-
-function NewHeader(){
+function AddHeader(){
   debugger
-    let mybr_key = document.createElement('br');
-    let input_key = document.createElement('INPUT');
-    let span_key = document.createElement('SPAN');
-    let span_value = document.createElement('SPAN');
-    let input_value = document.createElement('INPUT');
-    let mybr_value = document.createElement('br');
     let text_key = document.createTextNode('Key');
     let text_value = document.createTextNode('Value');
-    let header = document.getElementById('key');
-    let head = document.getElementById('head');
-    let value = document.getElementById('value');
+    let header = document.getElementById('headerKey');
+    let head = document.getElementById('header');
+    let value = document.getElementById('headerValue');
     let value_br = document.createElement('br');
+    let input_br = document.createElement('br');
     
-    header.appendChild(span_key);
-    header.appendChild(input_key);
-    header.appendChild(mybr_key);
-    span_key.appendChild(text_key); 
-    span_key.id = "span" + i;
-    input_key.id = "input" + i;
+    CreateElement("span", header);
+    element.appendChild(text_key);
+    CreateElement("input", header, id="inputKey"+countOfHeader);
 
-    value.appendChild(span_value);
-    value.appendChild(input_value);
-    value.appendChild(mybr_value);
-    span_value.appendChild(text_value);
-    span_value.after(mybr_value);
-    value.appendChild(value_br);
-    input_value.after(value_br);
-  
-    if (document.getElementById('span'+i).id == 'span'+i){
-        i = i + 1;
-    }
+    CreateElement("span", value);
+    element.appendChild(text_value);
+    element.after(value_br);
+    CreateElement("input", value, id="inputValue"+countOfHeader);
+    element.after(input_br);
 }
-
-
-//function NewHeader(){
- //   headerTags = [];
-  //
- //   for (i=1; i < 3; i++){
- //       input_i = document.createElement('INPUT');    
- //       span_i = document.createElement('SPAN');
- //       br_i = document.createElement('br');
- //       input_i.id = "input_header" + i;
- //       headerTags.push(span_i);
- //       headerTags.push(input_i);
- //       headerTags.push(br_i);
- //   }
-//
- //   let mybr = document.createElement('br');
- //   let header = document.getElementById('key');
- //   let head = document.getElementById('head');
- //   let key_value = document.getElementById('value');
- //   let btn = document.getElementById('btn');
- //   let text_key = document.createTextNode('Key');
- //   let text_value = document.createTextNode('Value');
- // 
- //   header.appendChild(headerTags[0]); 
- //   header.appendChild(headerTags[1]);
- //   header.appendChild(headerTags[2]);
- //   headerTags[0].appendChild(text_key);
- //   head.after(headerTags[0]);
- //   headerTags[0].after(headerTags[1]);
- //   headerTags[0].before(headerTags[2]);
- //   
- //   key_value.appendChild(headerTags[5]); 
- //   key_value.appendChild(mybr); 
- //   key_value.appendChild(headerTags[3]); 
- //   key_value.appendChild(headerTags[4]);
- //   headerTags[3].appendChild(text_value);
- //   btn.after(headerTags[3]);
- //   headerTags[3].after(headerTags[4]);
- //   headerTags[3].before(headerTags[5]);
- //   headerTags[4].before(mybr); 
-//}
 
 
 function NewBody(){

@@ -2,8 +2,9 @@
     <head>
       <link rel="stylesheet" href="calling-api.css">
     </head>
-    <body class="grid-container">
-      <div id="app">
+    <body>
+      <div id="app" class="grid-container">
+        <div>
         <span>Verbs:</span>
       <select id="verbs" class="item">
         <option value="GET">GET</option>
@@ -15,24 +16,25 @@
       </div>
       <div> 
         <span>URL:</span>
-        <input id="item1" class="secondDiv"></input>
+        <input id="urlInput" class="secondDiv"></input>
         <button onclick="Send()">Send</button>
       </div>
       <div></div>
-      <div id="key" class="item">
-        <span id="head">Header</span><br>
+      <div id="headerKey" class="item">
+        <span id="header">Header</span><br>
       </div>
-      <div id="value">
-        <button id="btn" onclick="NewHeader()">Add new headers</button><br>
+      <div id="headerValue">
+        <button id="btnValue" onclick="AddHeader()">Add new headers</button><br>
       </div>
       <div></div>
       <div id="bodyDiv">
         <span id="body">Body</span>
       </div>
-      <div id="btnDiv">
-        <button id="body_btn" onclick="NewBody()">Add new body</button>
+      <div id="bodyValue">
+        <button id="btnBody" onclick="NewBody()">Add new body</button>
       </div>
       <div></div>
+      </div>
       <script src='calling-api.js'></script>
     </body>
 </html>
