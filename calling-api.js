@@ -4,7 +4,7 @@ let countOfBody = 0;
 
 function CreateElement(elementName, append=null, id=null){
     element = document.createElement(elementName);
-    if (appen !== null){
+    if (append !== null){
         append.appendChild(element);
     }
     if (id !== null){
