@@ -18,8 +18,6 @@ function CreateElement(elementName, append=null, id=null, textName=null){
 
 
 function AddHeader(){
-    let textKey = document.createTextNode('Key');
-    let textValue = document.createTextNode('Value');
     let headerKey = document.getElementById('headerKey');
     let headerValue = document.getElementById('headerValue');
     
