@@ -10,7 +10,7 @@ function CreateElement(elementName, append=null, id=null, innerText=null){
     if (id !== null){
         element.id = id;
     }
-    if (elementName == "span" && innerText !== null){
+    if (innerText !== null){
         element.innerText = textName;
     }
     return element;
@@ -24,9 +24,9 @@ function AddHeader(){
     CreateElement("span", headerKey, id=null, textName = "Key");
     CreateElement("input", headerKey, id="inputKey"+countOfHeader);
 
-    let spanTag = CreateElement("span", headerValue, id=null, textName = "Value");
-    spanTag.after(document.createElement('br'));
-    let inputTag = CreateElement("input", headerValue, id="inputValue"+countOfHeader);
-    inputTag.after(document.createElement('br'));
+    CreateElement("span", headerValue, id=null, textName = "Value");
+    CreateElement("br", headerValue);
+    inputTag = CreateElement("input", headerValue, id="inputValue"+countOfHeader);
+    CreateElement("br", headerValue);
 }
 
