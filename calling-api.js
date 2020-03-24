@@ -2,14 +2,17 @@ let countOfHeader = 0;
 let countOfBody = 0;
 
 
-function CreateElement(elementName, append, id=null){
+function CreateElement(elementName, append=null, id=null){
     element = document.createElement(elementName);
+    if (appen !== null){
+        append.appendChild(element);
+    }
     if (id !== null){
         element.id = id;
     }
-    append.appendChild(element);
     return element;
 }
+
 
 function AddHeader(){
     let text_key = document.createTextNode('Key');
