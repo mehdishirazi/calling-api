@@ -49,17 +49,17 @@ function AddBody(){
 }
 
 
-function ReceivingValue(){
-    let head = new Array();
-    let body = new Array();
+function Send(){
+  debugger
+    let head = new Object();
 
     let headKey = document.getElementById('headerKey').getElementsByTagName('INPUT');
     let headValue = document.getElementById('headerValue').getElementsByTagName('INPUT');
 
     for (i=0; i < headKey.length; i++){
-        key_i = headKey[i].value;
-        value_i = headValue[i].value;
-        head.push(key_i, value_i);
+        key = document.getElementById('inputHeaderKey'+i).value;
+        value = document.getElementById('inputHeaderValue'+i).value;
+        head.key = value;
     }
 }
 
