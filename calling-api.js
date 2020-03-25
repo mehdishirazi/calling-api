@@ -48,3 +48,19 @@ function AddBody(){
     countOfBody++;
 }
 
+
+function ReceivingValue(){
+  debugger
+    let head = new Array();
+    let body = new Array();
+
+    let headKey = document.getElementById('headerKey').getElementsByTagName('INPUT');
+    let headValue = document.getElementById('headerValue').getElementsByTagName('INPUT');
+
+    for (i=0; i < headKey.length; i++){
+        key_i = headKey[i].value;
+        value_i = headValue[i].value;
+        head.push(key_i, value_i);
+    }
+}
+
