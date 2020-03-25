@@ -50,13 +50,15 @@ function AddBody(){
 
 
 function Send(){
-    let header = new Object();
+    let url = document.getElementById('urlInput').value;
+    let verb = document.getElementById('verb').value;
+    let headers = new Object();
     let body = new Object();
 
     for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
         key = document.getElementById('inputHeaderKey'+i).value;
         value = document.getElementById('inputHeaderValue'+i).value;
-        header[key] = value;
+        headers[key] = value;
     }
     
     for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
@@ -64,5 +66,21 @@ function Send(){
         value = document.getElementById('inputBodyValue'+i).value;
         body[key] = value;
     }
+    FetchAPI(url=url, method=verb, data=body, headers=headers);
+}
+
+
+async function FetchAPI(url, method="GET", data={}, headers={}) {
+  const response = await fetch(url, {
+    method: method,
+    cache: 'no-cache', 
+    credentials: 'same-origin', 
+    headers: headers,
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer', 
+    body: JSON.stringify(data) 
+  });
+    resp = await response.json();
+  return resp;
 }
 
