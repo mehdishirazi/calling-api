@@ -67,23 +67,20 @@ function Send(){
         body[key] = value;
     }
 
-    FetchAPI(url= url, method= verb, data = body, headers= headers);
-
+    a = FetchAPI(url= url, method= verb, data= body, headers= headers);
+  console.log(a);
 }
 
 
-async function FetchAPI(url=null, method=null, data = {}, headers={}) {
-  // Default options are marked with *
+async function FetchAPI(url, method="GET", data={}, headers={}) {
   const response = await fetch(url, {
-    method: method, // *GET, POST, PUT, DELETE, etc.
-    //mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {},
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *client
-    //body: JSON.stringify(data) // body data type must match "Content-Type" header
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    method: method,
+    cache: 'no-cache', 
+    credentials: 'same-origin', 
+    headers: headers,
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer', 
+    body: JSON.stringify(data) 
   });
     resp = await response.json();
 }
