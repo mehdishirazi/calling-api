@@ -48,3 +48,21 @@ function AddBody(){
     countOfBody++;
 }
 
+
+function Send(){
+    let header = new Object();
+    let body = new Object();
+
+    for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
+        key = document.getElementById('inputHeaderKey'+i).value;
+        value = document.getElementById('inputHeaderValue'+i).value;
+        header[key] = value;
+    }
+    
+    for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
+        key = document.getElementById('inputBodyKey'+i).value;
+        value = document.getElementById('inputBodyValue'+i).value;
+        body[key] = value;
+    }
+}
+
