@@ -64,6 +64,5 @@ function Send(){
         value = document.getElementById('inputBodyValue'+i).value;
         body[key] = value;
     }
-    FetchApi(header, body)
 }
 
