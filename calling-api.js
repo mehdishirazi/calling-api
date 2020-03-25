@@ -1,6 +1,7 @@
 let countOfHeader = 0;
 let countOfBody = 0;
 
+
 function CreateElement(elementName, append=null, id=null, innerText=null){
     element = document.createElement(elementName);
     if (append !== null){
@@ -49,10 +50,9 @@ function AddBody(){
 
 
 function Send(){
-  debugger
     let url = document.getElementById('urlInput').value;
-    let verb = document.getElementById('verbs').value;
-    let header = new Object();
+    let verb = document.getElementById('verb').value;
+    let headers = new Object();
     let body = new Object();
 
     for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
@@ -67,12 +67,12 @@ function Send(){
         body[key] = value;
     }
 
-    FetchAPI(url, method= verb, data = body, deaders= header);
+    FetchAPI(url= url, method= verb, data = body, deaders= header);
 
 }
 
 
-async function FetchAPI(url, method=null, data = {}, headers={}) {
+async function FetchAPI(url=null, method=null, data = {}, headers={}) {
   // Default options are marked with *
   const response = await fetch(url, {
     method: method, // *GET, POST, PUT, DELETE, etc.
