@@ -50,7 +50,6 @@ function AddBody(){
 
 
 function ReceivingValue(){
-  debugger
     let head = new Array();
     let body = new Array();
 
