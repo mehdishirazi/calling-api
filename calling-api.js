@@ -32,3 +32,19 @@ function AddHeader(){
     countOfHeader++;
 }
 
+
+function AddBody(){
+    let bodyDiv = document.getElementById('bodyDiv');
+    let bodyValue = document.getElementById('bodyValue');
+    
+    CreateElement("span", bodyDiv, id=null, innerText = "Key");
+    CreateElement("input", bodyDiv, id="inputKey"+countOfBody);
+
+    CreateElement("span", bodyValue, id=null, innerText = "Value");
+    CreateElement("br", bodyValue);
+    CreateElement("input", bodyValue, id="inputValue"+countOfHeader);
+    CreateElement("br", bodyValue);
+
+    countOfBody++;
+}
+
