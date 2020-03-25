@@ -58,7 +58,7 @@ function Send(){
     for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
         key = document.getElementById('inputHeaderKey'+i).value;
         value = document.getElementById('inputHeaderValue'+i).value;
-        header[key] = value;
+        headers[key] = value;
     }
     
     for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
@@ -66,9 +66,7 @@ function Send(){
         value = document.getElementById('inputBodyValue'+i).value;
         body[key] = value;
     }
-
-    a = FetchAPI(url= url, method= verb, data= body, headers= headers);
-  console.log(a);
+    FetchAPI(url=url, method=verb, data=body, headers=headers);
 }
 
 
@@ -83,5 +81,6 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
     body: JSON.stringify(data) 
   });
     resp = await response.json();
+  return resp;
 }
 
