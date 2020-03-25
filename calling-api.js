@@ -22,13 +22,29 @@ function AddHeader(){
     let headerValue = document.getElementById('headerValue');
     
     CreateElement("span", headerKey, id=null, innerText = "Key");
-    CreateElement("input", headerKey, id="inputKey"+countOfHeader);
+    CreateElement("input", headerKey, id="inputHeaderKey"+countOfHeader);
 
     CreateElement("span", headerValue, id=null, innerText = "Value");
     CreateElement("br", headerValue);
-    CreateElement("input", headerValue, id="inputValue"+countOfHeader);
+    CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader);
     CreateElement("br", headerValue);
 
     countOfHeader++;
+}
+
+
+function AddBody(){
+    let bodyDiv = document.getElementById('bodyDiv');
+    let bodyValue = document.getElementById('bodyValue');
+    
+    CreateElement("span", bodyDiv, id=null, innerText = "Key");
+    CreateElement("input", bodyDiv, id="inputBodyKey"+countOfBody);
+
+    CreateElement("span", bodyValue, id=null, innerText = "Value");
+    CreateElement("br", bodyValue);
+    CreateElement("input", bodyValue, id="inputBodyValue"+countOfHeader);
+    CreateElement("br", bodyValue);
+
+    countOfBody++;
 }
 
