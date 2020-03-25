@@ -1,7 +1,6 @@
 let countOfHeader = 0;
 let countOfBody = 0;
 
-
 function CreateElement(elementName, append=null, id=null, innerText=null){
     element = document.createElement(elementName);
     if (append !== null){
@@ -50,6 +49,9 @@ function AddBody(){
 
 
 function Send(){
+  debugger
+    let url = document.getElementById('urlInput').value;
+    let verb = document.getElementById('verbs').value;
     let header = new Object();
     let body = new Object();
 
@@ -64,5 +66,25 @@ function Send(){
         value = document.getElementById('inputBodyValue'+i).value;
         body[key] = value;
     }
+
+    FetchAPI(url, method= verb, data = body, deaders= header);
+
+}
+
+
+async function FetchAPI(url, method=null, data = {}, headers={}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: method, // *GET, POST, PUT, DELETE, etc.
+    //mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {},
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    //body: JSON.stringify(data) // body data type must match "Content-Type" header
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+    resp = await response.json();
 }
 
