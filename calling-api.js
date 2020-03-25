@@ -67,7 +67,7 @@ function Send(){
         body[key] = value;
     }
 
-    FetchAPI(url= url, method= verb, data = body, deaders= header);
+    FetchAPI(url= url, method= verb, data = body, headers= headers);
 
 }
 
