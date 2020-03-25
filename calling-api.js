@@ -50,16 +50,20 @@ function AddBody(){
 
 
 function Send(){
-  debugger
-    let head = new Object();
+    let header = new Object();
+    let body = new Object();
 
-    let headKey = document.getElementById('headerKey').getElementsByTagName('INPUT');
-    let headValue = document.getElementById('headerValue').getElementsByTagName('INPUT');
-
-    for (i=0; i < headKey.length; i++){
+    for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
         key = document.getElementById('inputHeaderKey'+i).value;
         value = document.getElementById('inputHeaderValue'+i).value;
-        head.key = value;
+        header[key] = value;
     }
+    
+    for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
+        key = document.getElementById('inputBodyKey'+i).value;
+        value = document.getElementById('inputBodyValue'+i).value;
+        body[key] = value;
+    }
+    FetchApi(header, body)
 }
 
