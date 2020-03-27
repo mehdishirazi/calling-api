@@ -72,15 +72,15 @@ async function Send(){
 
 
 async function FetchAPI(url, method="GET", data={}, headers={}) {
-    const response = await fetch(url, {
-        method: method,
-        cache: 'no-cache', 
-        credentials: 'same-origin', 
-        headers: headers,
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer', 
-        body: JSON.stringify(data) 
-    });
+  const response = await fetch(url, {
+    method: method,
+    cache: 'no-cache', 
+    credentials: 'same-origin', 
+    headers: headers,
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer', 
+    body: JSON.stringify(data) 
+  });
     resp = await response.json();
   return resp;
 }
