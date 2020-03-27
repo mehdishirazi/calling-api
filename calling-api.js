@@ -1,6 +1,5 @@
 let countOfHeader = 0;
 let countOfBody = 0;
-let countOfShowingResult = 0;
 let fetchApi = null;
 
 
@@ -90,7 +89,7 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 
 function ShowingResult(){
     for (i=0; i < fetchApi.length; i++){
-    CreateElement("P", document.getElementById("showingResult"), id="showingResult"+i)
+    CreateElement("P", document.getElementById("showingResults"), id="showingResult"+i)
     let jsonFetchApi_i = JSON.stringify(fetchApi[i]);
     document.getElementById('showingResult'+i).innerHTML = jsonFetchApi_i;
     }
