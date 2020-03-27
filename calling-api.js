@@ -68,7 +68,7 @@ async function Send(){
         body[key] = value;
     }
     fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
-    ShowingResult();
+    ShowingResults();
 }
 
 
@@ -87,7 +87,7 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 }
 
 
-function ShowingResult(){
+function ShowingResults(){
     for (i=0; i < fetchApi.length; i++){
     CreateElement("P", document.getElementById("showingResults"), id="showingResult"+i)
     let jsonFetchApi_i = JSON.stringify(fetchApi[i]);
