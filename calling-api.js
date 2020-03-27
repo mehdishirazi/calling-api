@@ -1,6 +1,5 @@
 let countOfHeader = 0;
 let countOfBody = 0;
-let fetchApi = null;
 
 
 function CreateElement(elementName, append=null, id=null, innerText=null){
@@ -68,7 +67,7 @@ async function Send(){
         body[key] = value;
     }
     fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
-    ShowingResults();
+    ShowingResults(fetchApi);
 }
 
 
@@ -87,7 +86,7 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 }
 
 
-function ShowingResults(){
+function ShowingResults(fetchApi){
     for (i=0; i < fetchApi.length; i++){
     CreateElement("P", document.getElementById("showingResults"), id="showingResult"+i)
     let jsonFetchApi_i = JSON.stringify(fetchApi[i]);
