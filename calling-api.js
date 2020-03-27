@@ -1,5 +1,7 @@
 let countOfHeader = 0;
 let countOfBody = 0;
+let countOfShowingResult = 0;
+let fetchApi = null;
 
 
 function CreateElement(elementName, append=null, id=null, innerText=null){
@@ -49,7 +51,7 @@ function AddBody(){
 }
 
 
-function Send(){
+async function Send(){
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value;
     let headers = new Object();
@@ -66,21 +68,31 @@ function Send(){
         value = document.getElementById('inputBodyValue'+i).value;
         body[key] = value;
     }
-    FetchAPI(url=url, method=verb, data=body, headers=headers);
+    fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
+    ShowingResult();
 }
 
 
 async function FetchAPI(url, method="GET", data={}, headers={}) {
-  const response = await fetch(url, {
-    method: method,
-    cache: 'no-cache', 
-    credentials: 'same-origin', 
-    headers: headers,
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer', 
-    body: JSON.stringify(data) 
-  });
+    const response = await fetch(url, {
+        method: method,
+        cache: 'no-cache', 
+        credentials: 'same-origin', 
+        headers: headers,
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer', 
+        body: JSON.stringify(data) 
+    });
     resp = await response.json();
   return resp;
+}
+
+
+function ShowingResult(){
+    for (i=0; i < fetchApi.length; i++){
+    CreateElement("P", document.getElementById("showingResult"), id="showingResult"+i)
+    let jsonFetchApi_i = JSON.stringify(fetchApi[i]);
+    document.getElementById('showingResult'+i).innerHTML = jsonFetchApi_i;
+    }
 }
 
