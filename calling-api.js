@@ -42,7 +42,7 @@ function AddBody(){
 
     CreateElement("span", bodyValue, id=null, innerText = "Value");
     CreateElement("br", bodyValue);
-    CreateElement("input", bodyValue, id="inputBodyValue"+countOfHeader);
+    CreateElement("input", bodyValue, id="inputBodyValue"+countOfBody);
     CreateElement("br", bodyValue);
 
     countOfBody++;
@@ -50,6 +50,7 @@ function AddBody(){
 
 
 async function Send(){
+  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value;
     let headers = new Object();
@@ -90,7 +91,14 @@ function ShowingResults(fetchApi){
     CreateElement("table", document.getElementById("showingResults"), id="resultTable");
     CreateElement("tr", document.getElementById("resultTable"), id="tr");
     let table = document.getElementById('resultTable');
-    let keys = Object.keys(fetchApi[0]);
+    let keys = null;
+  
+    if (Array.isArray(fetchApi)){
+        keys = Object.keys(fetchApi[0]);
+    }
+    else {
+        keys = Object.keys(fetchApi);
+    }
 
     for (i=0; i < keys.length; i++){
         CreateElement("td", document.getElementById("tr"), id="td"+i)
