@@ -87,8 +87,24 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 
 
 function ShowingResults(fetchApi){
-    CreateElement("P", document.getElementById("showingResults"), id="showingResult")
-    let jsonFetchApi = JSON.stringify(fetchApi);
-    document.getElementById('showingResult').innerHTML = jsonFetchApi;
+    CreateElement("table", document.getElementById("showingResults"), id="resultTable");
+    CreateElement("tr", document.getElementById("resultTable"), id="tr");
+    let table = document.getElementById('resultTable');
+    let keys = Object.keys(fetchApi[0]);
+
+    for (i=0; i < keys.length; i++){
+        CreateElement("td", document.getElementById("tr"), id="td"+i)
+        document.getElementById("td"+i).innerHTML = keys[i];
+    }
+
+    let objectNumber = 0;
+    for (j=0; j < keys.length; j++){
+        let row = table.insertRow(1);
+        for (z=0; z < keys.length; z++){
+            let cell_z = row.insertCell(z);
+            cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
+        }
+    objectNumber = objectNumber + 1;
+    }
 }
 
