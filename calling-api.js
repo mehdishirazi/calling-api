@@ -50,7 +50,6 @@ function AddBody(){
 
 
 async function Send(){
-  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value;
     let headers = new Object();
@@ -95,24 +94,31 @@ function ShowingResults(fetchApi){
   
     if (Array.isArray(fetchApi)){
         keys = Object.keys(fetchApi[0]);
+        let objectNumber = 0;
+        for (i=0; i < keys.length; i++){
+            CreateElement("td", document.getElementById("tr"), id="td"+i)
+            document.getElementById("td"+i).innerHTML = keys[i];
+        }
+        for (j=0; j < keys.length; j++){
+            let row = table.insertRow(1);
+            for (z=0; z < keys.length; z++){
+                let cell_z = row.insertCell(z);
+                cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
+            }
+            objectNumber = objectNumber + 1;
+        }
     }
     else {
         keys = Object.keys(fetchApi);
-    }
-
-    for (i=0; i < keys.length; i++){
-        CreateElement("td", document.getElementById("tr"), id="td"+i)
-        document.getElementById("td"+i).innerHTML = keys[i];
-    }
-
-    let objectNumber = 0;
-    for (j=0; j < keys.length; j++){
+        for (i=0; i < keys.length; i++){
+            CreateElement("td", document.getElementById("tr"), id="td"+i)
+            document.getElementById("td"+i).innerHTML = keys[i];
+        }
         let row = table.insertRow(1);
         for (z=0; z < keys.length; z++){
             let cell_z = row.insertCell(z);
-            cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
+            cell_z.innerHTML = fetchApi[keys[z]];
         }
-     objectNumber = objectNumber + 1;
     }
 }
 
