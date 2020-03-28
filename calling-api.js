@@ -90,35 +90,27 @@ function ShowingResults(fetchApi){
     CreateElement("table", document.getElementById("showingResults"), id="resultTable");
     CreateElement("tr", document.getElementById("resultTable"), id="tr");
     let table = document.getElementById('resultTable');
-    let keys = null;
+    let key = [];
   
-    if (Array.isArray(fetchApi)){
-        keys = Object.keys(fetchApi[0]);
-        let objectNumber = 0;
-        for (i=0; i < keys.length; i++){
-            CreateElement("td", document.getElementById("tr"), id="td"+i)
-            document.getElementById("td"+i).innerHTML = keys[i];
-        }
-        for (j=0; j < keys.length; j++){
-            let row = table.insertRow(1);
-            for (z=0; z < keys.length; z++){
-                let cell_z = row.insertCell(z);
-                cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
-            }
-            objectNumber = objectNumber + 1;
-        }
+    if (!Array.isArray(fetchApi)){
+         key.push(fetchApi);
+         fetchApi = key;
     }
-    else {
-        keys = Object.keys(fetchApi);
-        for (i=0; i < keys.length; i++){
-            CreateElement("td", document.getElementById("tr"), id="td"+i)
-            document.getElementById("td"+i).innerHTML = keys[i];
-        }
+
+    keys = Object.keys(fetchApi[0]);
+    for (i=0; i < keys.length; i++){
+        CreateElement("td", document.getElementById("tr"), id="td"+i)
+        document.getElementById("td"+i).innerHTML = keys[i];
+    }
+
+    let objectNumber = 0;
+    for (j=0; j < keys.length; j++){
         let row = table.insertRow(1);
         for (z=0; z < keys.length; z++){
             let cell_z = row.insertCell(z);
-            cell_z.innerHTML = fetchApi[keys[z]];
+            cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
         }
+     objectNumber = objectNumber + 1;
     }
 }
 
