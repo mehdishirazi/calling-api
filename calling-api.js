@@ -104,7 +104,7 @@ function ShowingResults(fetchApi){
             let cell_z = row.insertCell(z);
             cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
         }
-    objectNumber = objectNumber + 1;
+     objectNumber = objectNumber + 1;
     }
 }
 
