@@ -88,7 +88,7 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 
 function ShowingResults(fetchApi){
     CreateElement("table", document.getElementById("showingResults"), id="resultTable");
-    CreateElement("tr", document.getElementById("resultTable"), id="tr");
+    CreateElement("tr", document.getElementById("resultTable"), id="trTage");
     let table = document.getElementById('resultTable');
     let key = [];
   
@@ -99,7 +99,7 @@ function ShowingResults(fetchApi){
 
     keys = Object.keys(fetchApi[0]);
     for (i=0; i < keys.length; i++){
-        CreateElement("td", document.getElementById("tr"), id="td"+i)
+        CreateElement("td", document.getElementById("trTage"), id="td"+i)
         document.getElementById("td"+i).innerHTML = keys[i];
     }
 
