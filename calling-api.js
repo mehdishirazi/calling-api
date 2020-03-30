@@ -51,7 +51,7 @@ function AddBody(){
 
 async function Send(){
     let url = document.getElementById('urlInput').value;
-    let verb = document.getElementById('verb').value;
+    let verb = document.getElementById('verb').value.toUpperCase();
     let headers = new Object();
     let body = new Object();
 
