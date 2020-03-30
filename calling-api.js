@@ -92,7 +92,7 @@ function ShowingResults(fetchApi){
         append=document.getElementById("showingResults"), 
         id="resultTable"
     );
-    CreateElement(
+    let tableTrTag = CreateElement(
         elementName="tr", 
         append=table, 
         id="trTag"
@@ -106,7 +106,7 @@ function ShowingResults(fetchApi){
     for (i=0; i < keys.length; i++){
         CreateElement(
             elementName="td", 
-            append=document.getElementById("trTag"), 
+            append=tableTrTag, 
             innerText=keys[i]
         )
     }
