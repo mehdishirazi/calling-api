@@ -42,7 +42,7 @@ function AddBody(){
 
     CreateElement("span", bodyValue, id=null, innerText = "Value");
     CreateElement("br", bodyValue);
-    CreateElement("input", bodyValue, id="inputBodyValue"+countOfHeader);
+    CreateElement("input", bodyValue, id="inputBodyValue"+countOfBody);
     CreateElement("br", bodyValue);
 
     countOfBody++;
@@ -87,8 +87,36 @@ async function FetchAPI(url, method="GET", data={}, headers={}) {
 
 
 function ShowingResults(fetchApi){
-    CreateElement("P", document.getElementById("showingResults"), id="showingResult")
-    let jsonFetchApi = JSON.stringify(fetchApi);
-    document.getElementById('showingResult').innerHTML = jsonFetchApi;
+    let table = CreateElement(
+        elementName="table", 
+        append=document.getElementById("showingResults"), 
+        id="resultTable"
+    );
+    let tableTrTag = CreateElement(
+        elementName="tr", 
+        append=table, 
+        id="trTag"
+    );
+  
+    if (!Array.isArray(fetchApi)){
+        fetchApi = [fetchApi];
+    }
+
+    keys = Object.keys(fetchApi[0]);
+    for (i=0; i < keys.length; i++){
+        CreateElement(
+            elementName="td", 
+            append=tableTrTag, 
+            innerText=keys[i]
+        )
+    }
+
+    for (j=0; j < fetchApi.length; j++){
+        let row = table.insertRow(1);
+        for (z=0; z < keys.length; z++){
+            let cell_z = row.insertCell(z);
+            cell_z.innerHTML = fetchApi[j][keys[z]];
+        }
+    }
 }
 

@@ -20,4 +20,7 @@
   width: 550px;
 }
 
+table, td {
+  border: 1px solid black;
+}
 
