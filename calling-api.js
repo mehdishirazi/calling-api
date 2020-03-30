@@ -111,7 +111,7 @@ function ShowingResults(fetchApi){
         )
     }
 
-    for (j=0; j < keys.length; j++){
+    for (j=0; j < fetchApi.length; j++){
         let row = table.insertRow(1);
         for (z=0; z < keys.length; z++){
             let cell_z = row.insertCell(z);
