@@ -90,27 +90,27 @@ function ShowingResults(fetchApi){
     CreateElement("table", document.getElementById("showingResults"), id="resultTable");
     CreateElement("tr", document.getElementById("resultTable"), id="trTage");
     let table = document.getElementById('resultTable');
-    let key = [];
   
     if (!Array.isArray(fetchApi)){
-         key.push(fetchApi);
-         fetchApi = key;
+        fetchApi = [fetchApi];
     }
 
     keys = Object.keys(fetchApi[0]);
     for (i=0; i < keys.length; i++){
-        CreateElement("td", document.getElementById("trTage"), id="td"+i)
-        document.getElementById("td"+i).innerHTML = keys[i];
+        CreateElement(
+          elementName="td", 
+          append=document.getElementById("trTage"), 
+          id="td"+i, 
+          innerText=keys[i]
+        )
     }
 
-    let objectNumber = 0;
     for (j=0; j < keys.length; j++){
         let row = table.insertRow(1);
         for (z=0; z < keys.length; z++){
             let cell_z = row.insertCell(z);
-            cell_z.innerHTML = fetchApi[objectNumber][keys[z]];
+            cell_z.innerHTML = fetchApi[j][keys[z]];
         }
-        objectNumber = objectNumber + 1;
     }
 }
 
