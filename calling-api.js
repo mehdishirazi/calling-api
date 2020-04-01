@@ -50,7 +50,6 @@ function AddBody(){
 
 
 async function Send(){
-  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
     let headerKeys = new Array();
@@ -58,7 +57,7 @@ async function Send(){
     let bodyKeys = new Array();
     let bodyValues = new Array();
     
-    let headers = new Object();
+    let header = new Object();
     let body = new Object();
 
     let keyHeaders = document.getElementById('headerKey').children;
@@ -73,7 +72,7 @@ async function Send(){
     }
 
     for (i=0; i < headerKeys.length; i++){
-        headers[headerKeys[i]] = headerValues[i];
+        header[headerKeys[i]] = headerValues[i];
     }
 
     let keyBodies = document.getElementById('bodyDiv').children;
