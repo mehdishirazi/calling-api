@@ -50,22 +50,47 @@ function AddBody(){
 
 
 async function Send(){
+  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
+    let headerKeys = new Array();
+    let headerValues = new Array();
+    let bodyKeys = new Array();
+    let bodyValues = new Array();
+    
     let headers = new Object();
     let body = new Object();
 
-    for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
-        key = document.getElementById('inputHeaderKey'+i).value;
-        value = document.getElementById('inputHeaderValue'+i).value;
-        headers[key] = value;
+    let keyHeaders = document.getElementById('headerKey').children;
+    let valueHeaders = document.getElementById('headerValue').children;
+    for (i=0; i < keyHeaders.length; i++){
+        if (keyHeaders[i].tagName == "INPUT")
+            headerKeys.push(keyHeaders[i].value);
     }
-    
-    for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
-        key = document.getElementById('inputBodyKey'+i).value;
-        value = document.getElementById('inputBodyValue'+i).value;
-        body[key] = value;
+    for (i=0; i < valueHeaders.length; i++){
+        if (valueHeaders[i].tagName == "INPUT")
+            headerValues.push(valueHeaders[i].value);
     }
+
+    for (i=0; i < headerKeys.length; i++){
+        headers[headerKeys[i]] = headerValues[i];
+    }
+
+    let keyBodies = document.getElementById('bodyDiv').children;
+    let valueBodies = document.getElementById('bodyValue').children;
+    for (i=0; i < keyBodies.length; i++){
+        if (keyBodies[i].tagName == "INPUT")
+            bodyKeys.push(keyBodies[i].value);
+    }
+    for (i=0; i < valueBodies.length; i++){
+        if (valueBodies[i].tagName == "INPUT")
+            bodyValues.push(valueBodies[i].value);
+    }
+
+    for (i=0; i < bodyKeys.length; i++){
+        body[bodyKeys[i]] = bodyValues[i];
+    }
+
     fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
     ShowingResults(fetchApi);
 }
