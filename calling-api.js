@@ -50,7 +50,6 @@ function AddBody(){
 
 
 async function Send(){
-  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
     
