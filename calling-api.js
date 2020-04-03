@@ -50,44 +50,25 @@ function AddBody(){
 
 
 async function Send(){
+  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
-    let headerKeys = new Array();
-    let headerValues = new Array();
-    let bodyKeys = new Array();
-    let bodyValues = new Array();
     
-    let header = new Object();
+    let headers = new Object();
     let body = new Object();
 
-    let keyHeaders = document.getElementById('headerKey').children;
-    let valueHeaders = document.getElementById('headerValue').children;
-    for (i=0; i < keyHeaders.length; i++){
-        if (keyHeaders[i].tagName == "INPUT")
-            headerKeys.push(keyHeaders[i].value);
-    }
-    for (i=0; i < valueHeaders.length; i++){
-        if (valueHeaders[i].tagName == "INPUT")
-            headerValues.push(valueHeaders[i].value);
-    }
+    let headerKeys = document.querySelectorAll('[id^="inputHeaderKey"]'); 
+    let headerValues = document.querySelectorAll('[id^="inputHeaderValue"]');
 
     for (i=0; i < headerKeys.length; i++){
-        header[headerKeys[i]] = headerValues[i];
+        headers[headerKeys[i].value] = headerValues[i].value;
     }
 
-    let keyBodies = document.getElementById('bodyDiv').children;
-    let valueBodies = document.getElementById('bodyValue').children;
-    for (i=0; i < keyBodies.length; i++){
-        if (keyBodies[i].tagName == "INPUT")
-            bodyKeys.push(keyBodies[i].value);
-    }
-    for (i=0; i < valueBodies.length; i++){
-        if (valueBodies[i].tagName == "INPUT")
-            bodyValues.push(valueBodies[i].value);
-    }
+    let bodyKeys = document.querySelectorAll('[id^="inputBodyKey"]'); 
+    let bodyValues = document.querySelectorAll('[id^="inputBodyValue"]');
 
     for (i=0; i < bodyKeys.length; i++){
-        body[bodyKeys[i]] = bodyValues[i];
+        body[bodyKeys[i].value] = bodyValues[i].value;
     }
 
     fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
