@@ -64,7 +64,9 @@ async function Send(){
     }
 
     let bodyKeys = document.querySelectorAll('[id^="inputBodyKey"]'); 
+    bodyKeys = Array.prototype.slice.call(bodyKeys).sort();
     let bodyValues = document.querySelectorAll('[id^="inputBodyValue"]');
+    bodyValues = Array.prototype.slice.call(bodyValue).sort();
     for (i=0; i < bodyKeys.length; i++){
         body[bodyKeys[i].value] = bodyValues[i].value;
     }
