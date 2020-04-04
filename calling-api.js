@@ -50,6 +50,7 @@ function AddBody(){
 
 
 async function Send(){
+  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
     
@@ -57,7 +58,9 @@ async function Send(){
     let body = new Object();
 
     let headerKeys = document.querySelectorAll('[id^="inputHeaderKey"]'); 
+    headerKeys = Array.prototype.slice.call(headerKeys).sort();
     let headerValues = document.querySelectorAll('[id^="inputHeaderValue"]');
+    headerValues = Array.prototype.slice.call(headerValue).sort();
 
     for (i=0; i < headerKeys.length; i++){
         headers[headerKeys[i].value] = headerValues[i].value;
