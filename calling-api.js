@@ -55,20 +55,17 @@ async function Send(){
     let headers = new Object();
     let body = new Object();
 
-    let headerKeys = document.querySelectorAll('[id^="inputHeaderKey"]'); 
-    headerKeys = Array.prototype.slice.call(headerKeys).sort();
-    let headerValues = document.querySelectorAll('[id^="inputHeaderValue"]');
-    headerValues = Array.prototype.slice.call(headerValue).sort();
-    for (i=0; i < headerKeys.length; i++){
-        headers[headerKeys[i].value] = headerValues[i].value;
+    for (i=0; i < document.getElementById('headerKey').getElementsByTagName("INPUT").length; i++){
+        key = document.getElementById('inputHeaderKey'+i).value;
+        value = document.getElementById('inputHeaderValue'+i).value;
+        headers[key] = value;
     }
-
-    let bodyKeys = document.querySelectorAll('[id^="inputBodyKey"]'); 
-    let bodyValues = document.querySelectorAll('[id^="inputBodyValue"]');
-    for (i=0; i < bodyKeys.length; i++){
-        body[bodyKeys[i].value] = bodyValues[i].value;
+    
+    for (i=0; i < document.getElementById('bodyDiv').getElementsByTagName("INPUT").length; i++){
+        key = document.getElementById('inputBodyKey'+i).value;
+        value = document.getElementById('inputBodyValue'+i).value;
+        body[key] = value;
     }
-
     fetchApi = await FetchAPI(url=url, method=verb, data=body, headers=headers);
     ShowingResults(fetchApi);
 }
