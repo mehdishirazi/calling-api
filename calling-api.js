@@ -2,7 +2,7 @@ let countOfHeader = 0;
 let countOfBody = 0;
 
 
-function CreateElement(elementName, append=null, id=null, innerText=null){
+function CreateElement(elementName, append=null, id=null, innerText=null, className=null){
     element = document.createElement(elementName);
     if (append !== null){
         append.appendChild(element);
@@ -13,6 +13,9 @@ function CreateElement(elementName, append=null, id=null, innerText=null){
     if (innerText !== null){
         element.innerText = innerText;
     }
+    if (className !== null){
+        element.className = className;
+    }
     return element;
 }
 
@@ -21,12 +24,20 @@ function AddHeader(){
     let headerKey = document.getElementById('headerKey');
     let headerValue = document.getElementById('headerValue');
     
-    CreateElement("span", headerKey, id=null, innerText = "Key");
+    CreateElement("span", headerKey, id="spanHeaderKey"+countOfHeader, innerText = "Key");
     CreateElement("input", headerKey, id="inputHeaderKey"+countOfHeader);
 
-    CreateElement("span", headerValue, id=null, innerText = "Value");
+    CreateElement("span", headerValue, id="spanHeaderValue"+countOfHeader, innerText = "Value");
     CreateElement("br", headerValue);
-    CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader);
+    CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader, innerText=null);
+    let btn = CreateElement(
+        elementName="button", 
+        append=headerValue, 
+        id="btnHeader"+countOfHeader,
+        innerText="Delete",
+        className="deleteBtn"
+    )
+    btn.onclick = SelectedRow;
     CreateElement("br", headerValue);
 
     countOfHeader++;
@@ -123,5 +134,37 @@ function ShowingResults(fetchApi){
             cell_z.innerHTML = fetchApi[j][keys[z]];
         }
     }
+}
+
+
+function SelectedRow(e){
+  debugger
+    let selected = e.currentTarget.id.slice(3, 9);
+    let selectedNumber = e.currentTarget.id.slice(9, e.currentTarget.id.length);
+    let selectedItems = [];
+    
+    if (selected == "Header"){
+        selectedItems.push(document.getElementById("headerKey"));
+        selectedItems.push(document.getElementById("headerValue"));
+        selectedItems.push(document.getElementById("spanHeaderKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputHeaderKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputHeaderValue"+selectedNumber));
+        selectedItems.push(document.getElementById("spanHeaderValue"+selectedNumber));
+        selectedItems.push(document.getElementById("btnHeader"+selectedNumber));
+    }
+    
+    RemoveElements(selectedItems);
+}
+
+
+function RemoveElements(items){
+  debugger
+    let keyParent = items[0];
+    let valueParent = items[1];
+    keyParent.removeChild(items[2]);
+    keyParent.removeChild(items[3]);
+    valueParent.removeChild(items[4]);
+    valueParent.removeChild(items[5]);
+    valueParent.removeChild(items[6]);
 }
 
