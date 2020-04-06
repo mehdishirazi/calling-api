@@ -37,7 +37,7 @@ function AddHeader(){
         innerText="Delete",
         className="deleteBtn"
     )
-    btn.onclick = SelectedRow;
+    btn.onclick = DeletingRow;
     CreateElement("br", headerValue, id="secondBr"+countOfHeader);
 
     countOfHeader++;
@@ -61,7 +61,7 @@ function AddBody(){
         innerText="Delete",
         className="deleteBtn"
     )
-    btn.onclick = SelectedRow;
+    btn.onclick = DeletingRow;
     CreateElement("br", bodyValue, id="secondBr"+countOfBody);
 
     countOfBody++;
@@ -145,7 +145,7 @@ function ShowingResults(fetchApi){
 }
 
 
-function SelectedRow(e){
+function DeletingRow(e){
     let eventId = e.currentTarget.id;
     let selected = eventId.match(/Header|Body/g).toString();
     let selectedNumber = eventId.match(/\d/g).toString();
