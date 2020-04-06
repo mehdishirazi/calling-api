@@ -28,7 +28,7 @@ function AddHeader(){
     CreateElement("input", headerKey, id="inputHeaderKey"+countOfHeader);
 
     CreateElement("span", headerValue, id="spanHeaderValue"+countOfHeader, innerText = "Value");
-    CreateElement("br", headerValue);
+    CreateElement("br", headerValue, id="br"+countOfHeader);
     CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader, innerText=null);
     let btn = CreateElement(
         elementName="button", 
@@ -38,7 +38,7 @@ function AddHeader(){
         className="deleteBtn"
     )
     btn.onclick = SelectedRow;
-    CreateElement("br", headerValue);
+    CreateElement("br", headerValue, id="secondBr"+countOfHeader);
 
     countOfHeader++;
 }
@@ -48,13 +48,21 @@ function AddBody(){
     let bodyDiv = document.getElementById('bodyDiv');
     let bodyValue = document.getElementById('bodyValue');
     
-    CreateElement("span", bodyDiv, id=null, innerText = "Key");
+    CreateElement("span", bodyDiv, id="spanBodyKey"+countOfBody, innerText = "Key");
     CreateElement("input", bodyDiv, id="inputBodyKey"+countOfBody);
 
-    CreateElement("span", bodyValue, id=null, innerText = "Value");
-    CreateElement("br", bodyValue);
+    CreateElement("span", bodyValue, id="spanBodyValue"+countOfBody, innerText = "Value");
+    CreateElement("br", bodyValue, id="br"+countOfBody);
     CreateElement("input", bodyValue, id="inputBodyValue"+countOfBody);
-    CreateElement("br", bodyValue);
+    let btn = CreateElement(
+        elementName="button", 
+        append=bodyValue, 
+        id="btnBody"+countOfBody,
+        innerText="Delete",
+        className="deleteBtn"
+    )
+    btn.onclick = SelectedRow;
+    CreateElement("br", bodyValue, id="secondBr"+countOfBody);
 
     countOfBody++;
 }
@@ -138,9 +146,9 @@ function ShowingResults(fetchApi){
 
 
 function SelectedRow(e){
-  debugger
-    let selected = e.currentTarget.id.slice(3, 9);
-    let selectedNumber = e.currentTarget.id.slice(9, e.currentTarget.id.length);
+    let eventId = e.currentTarget.id;
+    let selected = eventId.match(/Header|Body/g).toString();
+    let selectedNumber = eventId.match(/\d/g).toString();
     let selectedItems = [];
     
     if (selected == "Header"){
@@ -151,20 +159,30 @@ function SelectedRow(e){
         selectedItems.push(document.getElementById("inputHeaderValue"+selectedNumber));
         selectedItems.push(document.getElementById("spanHeaderValue"+selectedNumber));
         selectedItems.push(document.getElementById("btnHeader"+selectedNumber));
+        selectedItems.push(document.getElementById("br"+selectedNumber));
+        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
     }
     
-    RemoveElements(selectedItems);
-}
-
-
-function RemoveElements(items){
-  debugger
-    let keyParent = items[0];
-    let valueParent = items[1];
-    keyParent.removeChild(items[2]);
-    keyParent.removeChild(items[3]);
-    valueParent.removeChild(items[4]);
-    valueParent.removeChild(items[5]);
-    valueParent.removeChild(items[6]);
+    if (selected == "Body"){
+        selectedItems.push(document.getElementById("bodyDiv"));
+        selectedItems.push(document.getElementById("bodyValue"));
+        selectedItems.push(document.getElementById("spanBodyKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputBodyKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputBodyValue"+selectedNumber));
+        selectedItems.push(document.getElementById("spanBodyValue"+selectedNumber));
+        selectedItems.push(document.getElementById("btnBody"+selectedNumber));
+        selectedItems.push(document.getElementById("br"+selectedNumber));
+        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
+    }
+    
+    let keyParent = selectedItems[0];
+    let valueParent = selectedItems[1];
+    keyParent.removeChild(selectedItems[2]);
+    keyParent.removeChild(selectedItems[3]);
+    valueParent.removeChild(selectedItems[4]);
+    valueParent.removeChild(selectedItems[5]);
+    valueParent.removeChild(selectedItems[6]);
+    valueParent.removeChild(selectedItems[7]);
+    valueParent.removeChild(selectedItems[8]);
 }
 
