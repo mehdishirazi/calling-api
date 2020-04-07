@@ -58,7 +58,7 @@ async function Send(){
     let headerKeys = document.querySelectorAll('[id^="inputHeaderKey"]'); 
     headerKeys = Array.prototype.slice.call(headerKeys).sort();
     let headerValues = document.querySelectorAll('[id^="inputHeaderValue"]');
-    headerValues = Array.prototype.slice.call(headerValue).sort();
+    headerValues = Array.prototype.slice.call(headerValues).sort();
     for (i=0; i < headerKeys.length; i++){
         headers[headerKeys[i].value] = headerValues[i].value;
     }
@@ -66,7 +66,7 @@ async function Send(){
     let bodyKeys = document.querySelectorAll('[id^="inputBodyKey"]'); 
     bodyKeys = Array.prototype.slice.call(bodyKeys).sort();
     let bodyValues = document.querySelectorAll('[id^="inputBodyValue"]');
-    bodyValues = Array.prototype.slice.call(bodyValue).sort();
+    bodyValues = Array.prototype.slice.call(bodyValues).sort();
     for (i=0; i < bodyKeys.length; i++){
         body[bodyKeys[i].value] = bodyValues[i].value;
     }
@@ -112,6 +112,7 @@ function ShowingResults(fetchApi){
         CreateElement(
             elementName="td", 
             append=tableTrTag, 
+            id=null,
             innerText=keys[i]
         )
     }
