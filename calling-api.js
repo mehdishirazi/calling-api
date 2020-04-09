@@ -2,7 +2,7 @@ let countOfHeader = 0;
 let countOfBody = 0;
 
 
-function CreateElement(elementName, append=null, id=null, innerText=null){
+function CreateElement(elementName, append=null, id=null, innerText=null, className=null){
     element = document.createElement(elementName);
     if (append !== null){
         append.appendChild(element);
@@ -13,6 +13,9 @@ function CreateElement(elementName, append=null, id=null, innerText=null){
     if (innerText !== null){
         element.innerText = innerText;
     }
+    if (className !== null){
+        element.className = className;
+    }
     return element;
 }
 
@@ -21,13 +24,21 @@ function AddHeader(){
     let headerKey = document.getElementById('headerKey');
     let headerValue = document.getElementById('headerValue');
     
-    CreateElement("span", headerKey, id=null, innerText = "Key");
+    CreateElement("span", headerKey, id="spanHeaderKey"+countOfHeader, innerText = "Key");
     CreateElement("input", headerKey, id="inputHeaderKey"+countOfHeader);
 
-    CreateElement("span", headerValue, id=null, innerText = "Value");
-    CreateElement("br", headerValue);
-    CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader);
-    CreateElement("br", headerValue);
+    CreateElement("span", headerValue, id="spanHeaderValue"+countOfHeader, innerText = "Value");
+    CreateElement("br", headerValue, id="br"+countOfHeader);
+    CreateElement("input", headerValue, id="inputHeaderValue"+countOfHeader, innerText=null);
+    let btn = CreateElement(
+        elementName="button", 
+        append=headerValue, 
+        id="btnHeader"+countOfHeader,
+        innerText="Delete",
+        className="deleteBtn"
+    )
+    btn.onclick = DeletingRow;
+    CreateElement("br", headerValue, id="secondBr"+countOfHeader);
 
     countOfHeader++;
 }
@@ -37,13 +48,21 @@ function AddBody(){
     let bodyDiv = document.getElementById('bodyDiv');
     let bodyValue = document.getElementById('bodyValue');
     
-    CreateElement("span", bodyDiv, id=null, innerText = "Key");
+    CreateElement("span", bodyDiv, id="spanBodyKey"+countOfBody, innerText = "Key");
     CreateElement("input", bodyDiv, id="inputBodyKey"+countOfBody);
 
-    CreateElement("span", bodyValue, id=null, innerText = "Value");
-    CreateElement("br", bodyValue);
+    CreateElement("span", bodyValue, id="spanBodyValue"+countOfBody, innerText = "Value");
+    CreateElement("br", bodyValue, id="br"+countOfBody);
     CreateElement("input", bodyValue, id="inputBodyValue"+countOfBody);
-    CreateElement("br", bodyValue);
+    let btn = CreateElement(
+        elementName="button", 
+        append=bodyValue, 
+        id="btnBody"+countOfBody,
+        innerText="Delete",
+        className="deleteBtn"
+    )
+    btn.onclick = DeletingRow;
+    CreateElement("br", bodyValue, id="secondBr"+countOfBody);
 
     countOfBody++;
 }
@@ -124,5 +143,47 @@ function ShowingResults(fetchApi){
             cell_z.innerHTML = fetchApi[j][keys[z]];
         }
     }
+}
+
+
+function DeletingRow(e){
+    let eventId = e.currentTarget.id;
+    let selected = eventId.match(/Header|Body/g).toString();
+    let selectedNumber = eventId.match(/\d/g).toString();
+    let selectedItems = [];
+    
+    if (selected == "Header"){
+        selectedItems.push(document.getElementById("headerKey"));
+        selectedItems.push(document.getElementById("headerValue"));
+        selectedItems.push(document.getElementById("spanHeaderKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputHeaderKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputHeaderValue"+selectedNumber));
+        selectedItems.push(document.getElementById("spanHeaderValue"+selectedNumber));
+        selectedItems.push(document.getElementById("btnHeader"+selectedNumber));
+        selectedItems.push(document.getElementById("br"+selectedNumber));
+        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
+    }
+    
+    if (selected == "Body"){
+        selectedItems.push(document.getElementById("bodyDiv"));
+        selectedItems.push(document.getElementById("bodyValue"));
+        selectedItems.push(document.getElementById("spanBodyKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputBodyKey"+selectedNumber));
+        selectedItems.push(document.getElementById("inputBodyValue"+selectedNumber));
+        selectedItems.push(document.getElementById("spanBodyValue"+selectedNumber));
+        selectedItems.push(document.getElementById("btnBody"+selectedNumber));
+        selectedItems.push(document.getElementById("br"+selectedNumber));
+        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
+    }
+    
+    let keyParent = selectedItems[0];
+    let valueParent = selectedItems[1];
+    keyParent.removeChild(selectedItems[2]);
+    keyParent.removeChild(selectedItems[3]);
+    valueParent.removeChild(selectedItems[4]);
+    valueParent.removeChild(selectedItems[5]);
+    valueParent.removeChild(selectedItems[6]);
+    valueParent.removeChild(selectedItems[7]);
+    valueParent.removeChild(selectedItems[8]);
 }
 
