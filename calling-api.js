@@ -150,40 +150,29 @@ function DeletingRow(e){
     let eventId = e.currentTarget.id;
     let selected = eventId.match(/Header|Body/g).toString();
     let selectedNumber = eventId.match(/\d/g).toString();
-    let selectedItems = [];
     
     if (selected == "Header"){
-        selectedItems.push(document.getElementById("headerKey"));
-        selectedItems.push(document.getElementById("headerValue"));
-        selectedItems.push(document.getElementById("spanHeaderKey"+selectedNumber));
-        selectedItems.push(document.getElementById("inputHeaderKey"+selectedNumber));
-        selectedItems.push(document.getElementById("inputHeaderValue"+selectedNumber));
-        selectedItems.push(document.getElementById("spanHeaderValue"+selectedNumber));
-        selectedItems.push(document.getElementById("btnHeader"+selectedNumber));
-        selectedItems.push(document.getElementById("br"+selectedNumber));
-        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
+        let parent = Array.from(document.querySelectorAll('[id^="header"]'));
+        let childKey = Array.from(parent[0].querySelectorAll(`[id$="${selectedNumber}"]`));
+        let childValue = Array.from(parent[1].querySelectorAll(`[id$="${selectedNumber}"]`));
+        for(i=0; i < childKey.length; i++){
+            parent[0].removeChild(childKey[i]);
+        } 
+        for(i=0; i < childValue.length; i++){
+            parent[1].removeChild(childValue[i]);
+        } 
     }
     
     if (selected == "Body"){
-        selectedItems.push(document.getElementById("bodyDiv"));
-        selectedItems.push(document.getElementById("bodyValue"));
-        selectedItems.push(document.getElementById("spanBodyKey"+selectedNumber));
-        selectedItems.push(document.getElementById("inputBodyKey"+selectedNumber));
-        selectedItems.push(document.getElementById("inputBodyValue"+selectedNumber));
-        selectedItems.push(document.getElementById("spanBodyValue"+selectedNumber));
-        selectedItems.push(document.getElementById("btnBody"+selectedNumber));
-        selectedItems.push(document.getElementById("br"+selectedNumber));
-        selectedItems.push(document.getElementById("secondBr"+selectedNumber));
+        let parent = Array.from(document.querySelectorAll('[id^="body"]'));
+        let childKey = Array.from(parent[0].querySelectorAll(`[id$="${selectedNumber}"]`));
+        let childValue = Array.from(parent[1].querySelectorAll(`[id$="${selectedNumber}"]`));
+        for(i=0; i < childKey.length; i++){
+            parent[0].removeChild(childKey[i]);
+        } 
+        for(i=0; i < childValue.length; i++){
+            parent[1].removeChild(childValue[i]);
+        } 
     }
-    
-    let keyParent = selectedItems[0];
-    let valueParent = selectedItems[1];
-    keyParent.removeChild(selectedItems[2]);
-    keyParent.removeChild(selectedItems[3]);
-    valueParent.removeChild(selectedItems[4]);
-    valueParent.removeChild(selectedItems[5]);
-    valueParent.removeChild(selectedItems[6]);
-    valueParent.removeChild(selectedItems[7]);
-    valueParent.removeChild(selectedItems[8]);
 }
 
