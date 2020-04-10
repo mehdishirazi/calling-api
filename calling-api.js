@@ -69,6 +69,7 @@ function AddBody(){
 
 
 async function Send(){
+  debugger
     let url = document.getElementById('urlInput').value;
     let verb = document.getElementById('verb').value.toUpperCase();
     let headers = new Object();
@@ -176,3 +177,12 @@ function DeletingRow(e){
     }
 }
 
+
+function CurlParser(){
+  debugger
+    let curl = document.getElementById('curlInput').value;
+    let verb = curl.match(/(-X)\s\w+/g).toString();
+    verb = verb.split(' ');
+    verb = verb[1];
+
+}
