@@ -24,3 +24,12 @@ table, td {
   border: 1px solid black;
 }
 
+.valueInputs {
+  width: 580px;
+}
+
+.deleteBtn {
+  position: relative;
+  margin-left: 20px;
+}
+
