@@ -184,6 +184,16 @@ function CurlParser(){
     let verb = curl.match(/(-X)\s\w+/g).toString();
     verb = verb.split(' ');
     verb = verb[1];
+    
+    let headersObject = new Object();
+    let headers = curl.match(/(-H\s?)'([^']*)'/g).toString();
+    headers = headers.replace(/-H/g, "");
+    headers = headers.split(",");
+    for (i=0; i < headers.length; i++){
+        header = headers[i].match(/[^']*/g);
+        header = header[2].split(':');
+        headersObject[header[1]] = header[2];
+    }
 
     i = curl.search("H");
     i = i + 2;
