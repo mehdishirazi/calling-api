@@ -185,4 +185,14 @@ function CurlParser(){
     verb = verb.split(' ');
     verb = verb[1];
 
+    i = curl.search("H");
+    i = i + 2;
+    let allHeaders = "";
+    do {
+        let headers = curl[i]
+        allHeaders = allHeaders.concat(headers);
+        i++;
+    }
+    while (curl[i] !== "H") 
 }
+
