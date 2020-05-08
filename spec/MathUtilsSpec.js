@@ -1,5 +1,5 @@
 describe("MathUtils", function() {
-    var MathUtils = require('../MathUtils');;
+    var MathUtils = require('../lib/MathUtils');;
  
     //This will be called before running each spec
     beforeEach(function() {
